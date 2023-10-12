@@ -1,81 +1,263 @@
 <!DOCTYPE html>
-<html lang="uk">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Календар - JavaScript</title>
-  <link rel="stylesheet" href="./styles.css" />
-</head>
-
-<body>
-  <div class="wrapper">    
-
-    <button class="previous">
-      <img src="./assets/images/icons/left-arrow.svg" alt="Previous" />
-    </button>
-
-    <div class="month"></div>
-
-    <button class="next">
-      <img src="./assets/images/icons/right-arrow.svg" alt="Next" />
-    </button>
-
-    <div class="day-of-week">Пн</div>
-    <div class="day-of-week">Вт</div>
-    <div class="day-of-week">Ср</div>
-    <div class="day-of-week">Чт</div>
-    <div class="day-of-week">Пт</div>
-    <div class="day-of-week">Сб</div>
-    <div class="day-of-week">Нд</div>
-
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    <div class="date-number"></div>
-    
-
-  </div>
-  <script src="./js/app.js"></script>
-</body>
-
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="./css/styles.css"
+    />
+    <title>BMI Calculator</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="head__bg"></div>
+      <header class="header container">
+        <a href="#">
+          <img
+            src="./assets/images/icons/logo.svg"
+            alt=""
+        /></a>
+        <section class="header__content fbx">
+          <article class="content__item">
+            <h2>Body Mass Index Calculator</h2>
+            <p>
+              Better understand your weight in relation to your height using our body mass
+              index (BM) calculator. While BMI is not the sole determinant of a healthy
+              weight, it offers a valuable starting point to evaluate your overall health
+              and well-being.
+            </p>
+          </article>
+          <form class="content__form">
+            <h4>Enter your details below</h4>
+            <div class="form__check">
+              <label class="check__metric-label"
+                ><input
+                  class="check__metric-input"
+                  type="radio"
+                  name="test"
+                  checked
+                />Metric</label
+              >
+              <label class="check__imperial-label"
+                ><input
+                  class="check__imperial-input"
+                  type="radio"
+                  name="test"
+                />Imperial</label
+              >
+            </div>
+            <div class="item__metric-data">
+              <div>
+                <span class="metric-data__title">Height</span>
+                <label class="metric-data__input">
+                  <input
+                    id="height-metric"
+                    type="number"
+                    placeholder="0"
+                    maxlength="3"
+                  />
+                  <span>cm</span>
+                </label>
+              </div>
+              <div>
+                <span class="metric-data__title">Weight</span>
+                <label class="metric-data__input">
+                  <input
+                    id="weight-metric"
+                    type="number"
+                    placeholder="0"
+                    maxlength="3"
+                  />
+                  <span>kg</span>
+                </label>
+              </div>
+            </div>
+            <div class="item__imperial-data">
+              <span class="imperial-data__title">Height</span>
+              <div>
+                <label class="imperial-data__input">
+                  <input
+                    class="height__imperial"
+                    type="number"
+                    placeholder="0"
+                    maxlength="3"
+                  />
+                  <span>ft</span>
+                </label>
+                <label class="imperial-data__input">
+                  <input
+                    class="height__imperial"
+                    type="number"
+                    placeholder="0"
+                    maxlength="3"
+                  />
+                  <span>in</span>
+                </label>
+              </div>
+              <span class="imperial-data__title">Weight</span>
+              <div>
+                <label class="imperial-data__input">
+                  <input
+                    class="weight-imperial"
+                    type="number"
+                    placeholder="0"
+                    maxlength="3"
+                  />
+                  <span>st</span>
+                </label>
+                <label class="imperial-data__input">
+                  <input
+                    class="weight-imperial"
+                    type="number"
+                    placeholder="0"
+                    maxlength="3"
+                  />
+                  <span>lbs</span>
+                </label>
+              </div>
+            </div>
+            <div class="item__calculator">
+              <span class="calculator__title">Welcome!</span>
+              <span class="calculator__text"
+                >Enter your height and weight and you’ll see your BMI result here</span
+              >
+            </div>
+            <div class="item__calculator-metric">
+              <div>
+                <span class="calculator-metric__title">Your BMI is...</span>
+                <span class="calculator-metric__result">23.4</span>
+              </div>
+              <span class="calculator-metric__text"
+                >Your BMI suggests you’re a healthy weight. Your ideal weight is between
+                <b>63.3kgs - 85.2kgs</b>.</span
+              >
+            </div>
+            <div class="item__calculator-imperial">
+              <div>
+                <span class="calculator-imperial__title">Your BMI is...</span>
+                <span class="calculator-imperial__result">22.0</span>
+              </div>
+              <span class="calculator-imperial__text"
+                >Your BMI suggests you’re a healthy weight. Your ideal weight is between
+                <b>9st 6lbs - 12st 10lbs</b>.</span
+              >
+            </div>
+          </form>
+        </section>
+      </header>
+      <main class="main container">
+        <section class="bmi-result__box box__result">
+          <div class="box__result-img"></div>
+          <article class="box__result-info">
+            <div></div>
+            <h3 class="result-info__title">What your BMI result means</h3>
+            <p class="result-info__text">
+              A BMI range of 18.5 to 24.9 is considered a 'healthy weight.' Maintaining a
+              healthy weight may lower your chances of experiencing health issues later
+              on, such as obesity and type 2 diabetes. Aim for a nutritious diet with
+              reduced fat and sugar content, incorporating ample fruits and vegetables.
+              Additionally, strive for regular physical activity, ideally about 30 minutes
+              daily for five days a week.
+            </p>
+          </article>
+        </section>
+        <section class="mode-items">
+          <article class="mode-items__item">
+            <div class="item__img-food"></div>
+            <h4>Healthy eating</h4>
+            <p>
+              Healthy eating promotes weight control, disease prevention, better
+              digestion, immunity, mental clarity, and mood.
+            </p>
+          </article>
+          <article class="mode-items__item">
+            <div class="item__img-sport"></div>
+            <h4>Regular exercise</h4>
+            <p>
+              Exercise improves fitness, aids weight control, elevates mood, and reduces
+              disease risk, fostering wellness and longevity.
+            </p>
+          </article>
+          <article class="mode-items__item">
+            <div class="item__img-moon"></div>
+            <h4>Adequate sleep</h4>
+            <p>
+              Sleep enhances mental clarity, emotional stability, and physical wellness,
+              promoting overall restoration and rejuvenation.
+            </p>
+          </article>
+        </section>
+        <section class="limit__items">
+          <article class="items__bmi">
+            <h3 class="bmi__title">Limitations of BMI</h3>
+            <p>
+              Although BMI is often a practical indicator of healthy weight, it is not
+              suited for every person. Specific groups should carefully consider their BMI
+              outcomes, and in certain cases, the measurement may not be beneficial to
+              use.
+            </p>
+          </article>
+          <article class="items__card">
+            <h5 class="card__title gender">Gender</h5>
+            <p>
+              The development and body fat composition of girls and boys vary with age.
+              Consequently, a child's age and gender are considered when evaluating their
+              BMI.
+            </p>
+          </article>
+          <article class="items__card-line">
+            <div class="card-line__curved"></div>
+          </article>
+          <article class="items__card">
+            <h5 class="card__title age">Age</h5>
+            <p>
+              In aging individuals, increased body fat and muscle loss may cause BMI to
+              underestimate body fat content.
+            </p>
+          </article>
+          <article class="items__card">
+            <h5 class="card__title muscle">Muscle</h5>
+            <p>
+              BMI may misclassify muscular individuals as overweight or obese, as it
+              doesn't differentiate muscle from fat.
+            </p>
+          </article>
+          <article class="items__card">
+            <h5 class="card__title pregnancy">Pregnancy</h5>
+            <p>
+              Expectant mothers experience weight gain due to their growing baby.
+              Maintaining a healthy pre-pregnancy BMI is advisable to minimise health
+              risks for both mother and child.
+            </p>
+          </article>
+          <article class="items__card">
+            <h5 class="card__title race">Race</h5>
+            <p>
+              Certain health concerns may affect individuals of some Black and Asian
+              origins at lower BMIs than others. To learn more, it is advised to discuss
+              this with your GP or practice nurse.
+            </p>
+          </article>
+        </section>
+      </main>
+    </div>
+    <script src="./js/app.js"></script>
+  </body>
 </html>
