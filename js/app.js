@@ -1,83 +1,87 @@
-var formCheck = document.querySelector(".form__check");
-var metric = document.querySelector(".check__metric-input");
-var imperial = document.querySelector(".check__imperial-input");
-var metricData = document.querySelector(".item__metric-data");
-var imperialData = document.querySelector(".item__imperial-data");
-var variantHeightMetric = document.querySelector("#height-metric");
-var variantWeightMetric = document.querySelector("#weight-metric");
-var variantHeightImperial = document.querySelector(".height__imperial");
-var variantWeightImperial = document.querySelector(".weight-imperial");
-var calculator = document.querySelector(".item__calculator");
-var calculatorMetric = document.querySelector(".item__calculator-metric");
-var calculatorImperial = document.querySelector(".item__calculator-imperial");
-var calculatorMetricResult = document.querySelector(".calculator-metric__result");
-var calculatorImperialResult = document.querySelector(".calculator-imperial__result");
+var now = new Date();
 
-var height;
-var weight;
-var bmi;
+var curentMonth = now.getMonth();
+var curentYear = now.getFullYear();
 
-
-imperialData.style.display = "none";
-calculatorMetric.style.display = "none";
-calculatorImperial.style.display = "none";
-
-formCheck.addEventListener("change", () => {
-  metricData.style.display = metric.checked ? "flex" : "none";
-  imperialData.style.display = imperial.checked ? "flex" : "none";
-  calculatorMetric.style.display = "none";
-  calculatorImperial.style.display = "none";
-  calculator.style.display = "flex";
-});
-
-window.onload = () => {
-  var inputs = document.querySelectorAll('input[type="number"]');
-  inputs.forEach(function (input) {
-    input.addEventListener("input", function () {
-      if (this.value.length > this.maxLength) {
-        this.value = this.value.slice(0, this.maxLength);
-      }
-    });
-  });
-};
-
-function updateCalculatorMeric() {
-  if (variantHeightMetric.value === "" || variantWeightMetric.value === "") {
-    calculator.style.display = "flex";
-    calculatorMetric.style.display = "none";
-  } else {
-    height = variantHeightMetric.value;
-    weight = variantWeightMetric.value;
-    bmi = getBmiFromMetric(height, weight);
-    calculatorMetricResult.innerText = bmi.toFixed(1);
-    calculatorMetric.style.display = "flex";
-    calculator.style.display = "none";
-  }
+var monthIndexToName = {
+    0: 'Січень',
+    1: 'Лютий',
+    2: 'Березень',
+    3: 'Квітень',
+    4: 'Травень',
+    5: 'Червень',
+    6: 'Липень',
+    7: 'Серпень',
+    8: 'Вересень',
+    9: 'Жовтень',
+    10: 'Листопад',
+    11: 'Грудень',
 }
 
-variantHeightMetric.addEventListener("input", updateCalculatorMeric);
-variantWeightMetric.addEventListener("input", updateCalculatorMeric);
-
-function updateCalculatorImperial() {
-  if (variantHeightImperial.value === "" || variantWeightImperial.value === "") {
-    calculator.style.display = "flex";
-    calculatorImperial.style.display = "none";
-  } else {
-    height = variantHeightImperial.value;
-    weight = variantWeightImperial.value;
-    bmi = getBmiFromImperial(height, weight);
-    calculatorImperialResult.innerText = bmi.toFixed(1);
-    calculatorImperial.style.display = "flex";
-    calculator.style.display = "none";
-  }
+var monthIndexToImage = {
+    0: "url('../assets/images/bg/bayda.webp')",
+    1: "url('../assets/images/bg/bohun.webp')",
+    2: "url('../assets/images/bg/doroshenko.webp')",
+    3: "url('../assets/images/bg/hmelnitskiy.webp')",
+    4: "url('../assets/images/bg/mazepa.webp')",
+    5: "url('../assets/images/bg/nalyvayko.webp')",
+    6: "url('../assets/images/bg/orlyk.webp')",
+    7: "url('../assets/images/bg/pavlusenko.webp')",
+    8: "url('../assets/images/bg/pidkova.webp')",
+    9: "url('../assets/images/bg/sagaydachny.webp')",
+    10: "url('../assets/images/bg/sirko.webp')",
+    11: "url('../assets/images/bg/sulyma.webp')",
 }
 
-variantHeightImperial.addEventListener("input", updateCalculatorImperial);
-variantWeightImperial.addEventListener("input", updateCalculatorImperial);
+var monthElement = document.querySelector('.month');
+var previusButton = document.querySelector('.previous');
+var nextiusButton = document.querySelector('.next');
 
-var getBmiFromMetric = (centimetres, kilograms) =>
-  kilograms / Math.pow(centimetres / 100, 2);
+previusButton.addEventListener('click', () => {
+    curentMonth--;
+    if (curentMonth < 0) {
+        curentMonth = 11;
+        curentYear--;
+    }
+    renderMonth(curentMonth, curentYear);
+})
 
-var getBmiFromImperial = (inches, pounds) => (pounds / Math.pow(inches, 2)) * 703;
+nextiusButton.addEventListener('click', () => {
+    curentMonth++;
+    if (curentMonth > 11) {
+        curentMonth = 0;
+        curentYear++;
+    }
+    renderMonth(curentMonth, curentYear);
+})
 
+var dateNumberElements = [...document.querySelectorAll('.date-number')];
 
+var renderMonth = (monthIndex, year) => {
+    monthElement.innerHTML = `${monthIndexToName[monthIndex]} / ${year}`;
+
+    var firstDay = new Date(year, monthIndex, 0).getDay();
+
+    var numDaysInMonth = new Date(year, monthIndex + 1, 0).getDate()
+
+    dateNumberElements.forEach((element, index) => {
+        var date = (index + 1) - firstDay;       
+
+        element.innerHTML = (date > 0) && (date <= numDaysInMonth) ? date : '';
+
+        var css = document.createElement("style");
+        css.type = "text/css";
+        css.innerHTML = ".wrapper::before { background-image: " + monthIndexToImage[monthIndex] + "; }";
+        document.body.appendChild(css);     
+        
+        var today = new Date();
+        if (today.getMonth() === monthIndex && today.getFullYear() === year && today.getDate() === date) {
+            element.classList.add('today');
+        } else {
+            element.classList.remove('today');
+        }
+
+    })
+}
+
+renderMonth(curentMonth, curentYear);
